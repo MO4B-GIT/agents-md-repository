@@ -128,6 +128,12 @@ const agents: AgentEntry[] = [
     url: "https://uipath.github.io/uipath-python",
     imageSrc: "/logos/uipath.svg",
   },
+  {
+    name: "Junie",
+    from: "JetBrains",
+    url: "https://jetbrains.com/junie",
+    imageSrc: "/logos/junie.svg",
+  },
 ];
 
 const shuffleAgents = (items: AgentEntry[]) => {
