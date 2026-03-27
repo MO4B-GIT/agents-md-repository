@@ -110,7 +110,10 @@ function renderLineWithInlineCode(line: string): React.ReactNode {
     if (part.startsWith("`") && part.endsWith("`")) {
       // This is inline code
       return (
-        <span key={index} className="bg-gray-200 dark:bg-gray-800 px-1 rounded">
+        <span
+          key={index}
+          className="bg-green-200 dark:bg-green-800/60 text-green-950 dark:text-green-50 border border-green-300 dark:border-green-600 px-1 rounded"
+        >
           {part}
         </span>
       );
