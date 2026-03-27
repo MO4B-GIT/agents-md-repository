@@ -45,6 +45,12 @@ export default function Hero() {
           >
             Explore Examples
           </a>
+          <a
+            href="/assets.html"
+            className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800"
+          >
+            View Asset Map
+          </a>
           {/* Secondary CTA — view on GitHub */}
           <a
             href="https://github.com/agentsmd/agents.md"
