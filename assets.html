@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Asset Relationships</title>
+    <style>
+      :root {
+        --bg: #0b1020;
+        --panel: #121a32;
+        --panel-2: #182246;
+        --text: #e8ecff;
+        --muted: #a7b1d9;
+        --accent: #7c9cff;
+        --accent-2: #53d6ff;
+        --ok: #66e3a4;
+        --warn: #ffd36b;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        color: var(--text);
+        background:
+          radial-gradient(circle at 20% 15%, #1c2a5c 0%, transparent 45%),
+          radial-gradient(circle at 90% 5%, #0f5f6f 0%, transparent 30%),
+          linear-gradient(160deg, #080d1a 0%, #0b1020 50%, #090e1d 100%);
+        min-height: 100vh;
+        padding: 2rem;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .hero {
+        background: linear-gradient(140deg, rgba(124, 156, 255, 0.14), rgba(83, 214, 255, 0.08));
+        border: 1px solid rgba(167, 177, 217, 0.2);
+        border-radius: 18px;
+        padding: 1.4rem 1.6rem;
+        box-shadow: var(--shadow);
+        margin-bottom: 1.4rem;
+      }
+
+      h1 {
+        margin: 0 0 0.4rem;
+        font-size: clamp(1.4rem, 3vw, 2rem);
+      }
+
+      .subtitle {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+
+      .legend {
+        display: flex;
+        gap: 0.8rem;
+        margin-top: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+        padding: 0.35rem 0.75rem;
+        font-size: 0.85rem;
+        color: #dce3ff;
+      }
+
+      .dot {
+        width: 0.6rem;
+        height: 0.6rem;
+        border-radius: 999px;
+      }
+
+      .dot-page { background: var(--accent); }
+      .dot-comp { background: var(--accent-2); }
+      .dot-style { background: var(--ok); }
+      .dot-static { background: var(--warn); }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+      }
+
+      .card {
+        background: linear-gradient(165deg, rgba(18, 26, 50, 0.95), rgba(24, 34, 70, 0.9));
+        border: 1px solid rgba(167, 177, 217, 0.18);
+        border-radius: 16px;
+        padding: 1rem;
+        box-shadow: var(--shadow);
+      }
+
+      .card h2 {
+        font-size: 1rem;
+        margin: 0 0 0.6rem;
+      }
+
+      .path {
+        display: inline-block;
+        margin-bottom: 0.65rem;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.8rem;
+        color: #c5cdf8;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        padding: 0.2rem 0.5rem;
+        border-radius: 7px;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 0.45rem;
+      }
+
+      li {
+        color: var(--muted);
+        line-height: 1.35;
+      }
+
+      .link {
+        color: #dfe6ff;
+      }
+
+      .arrow {
+        color: #95a4e5;
+        margin-right: 0.35rem;
+      }
+
+      .diagram {
+        margin-top: 1.2rem;
+        background: rgba(8, 13, 26, 0.6);
+        border: 1px solid rgba(167, 177, 217, 0.2);
+        border-radius: 16px;
+        padding: 1rem;
+      }
+
+      .diagram pre {
+        margin: 0;
+        color: #cfd8ff;
+        font-size: 0.88rem;
+        line-height: 1.5;
+        overflow-x: auto;
+      }
+
+      footer {
+        margin-top: 1.2rem;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <section class="hero">
+        <h1>How the repository files connect</h1>
+        <p class="subtitle">
+          This page gives a quick visual map of the project. It shows which files are entry points,
+          which are reusable UI sections, where styling comes from, and where static assets are served.
+        </p>
+
+        <div class="legend">
+          <span class="chip"><span class="dot dot-page"></span>Page entry points</span>
+          <span class="chip"><span class="dot dot-comp"></span>Reusable components</span>
+          <span class="chip"><span class="dot dot-style"></span>Global styling</span>
+          <span class="chip"><span class="dot dot-static"></span>Static files</span>
+        </div>
+      </section>
+
+      <section class="grid" aria-label="Asset relationship cards">
+        <article class="card">
+          <h2>Page layer</h2>
+          <div class="path">pages/index.tsx</div>
+          <ul>
+            <li><span class="arrow">→</span><span class="link">Imports UI sections</span> like Hero, FAQ, Examples.</li>
+            <li><span class="arrow">→</span>Calls GitHub API in <span class="link">getStaticProps</span> to fetch contributors.</li>
+            <li><span class="arrow">→</span>Passes fetched data into <span class="link">ExamplesSection</span>.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h2>Component layer</h2>
+          <div class="path">components/*.tsx</div>
+          <ul>
+            <li><span class="arrow">→</span>Each component renders one website section.</li>
+            <li><span class="arrow">→</span>Composed together by <span class="link">pages/index.tsx</span>.</li>
+            <li><span class="arrow">→</span>Can reference static logos/images in <span class="link">public/</span>.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h2>Styling layer</h2>
+          <div class="path">styles/globals.css</div>
+          <ul>
+            <li><span class="arrow">→</span>Loaded via <span class="link">pages/_app.tsx</span>.</li>
+            <li><span class="arrow">→</span>Provides global styles and utility-friendly base rules.</li>
+            <li><span class="arrow">→</span>Shared by all pages and components.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h2>Static asset layer</h2>
+          <div class="path">public/...</div>
+          <ul>
+            <li><span class="arrow">→</span>Served directly by Next.js from root URL paths.</li>
+            <li><span class="arrow">→</span>Used for favicons, social image, and tool logos.</li>
+            <li><span class="arrow">→</span>No import build step needed for basic file references.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="diagram" aria-label="File dependency diagram">
+        <pre>
+pages/_app.tsx ───────► styles/globals.css
+       │
+       └──────────────► pages/index.tsx ───────► components/*
+                                      │
+                                      ├────────► public/logos/*
+                                      └────────► GitHub API (contributors)
+        </pre>
+      </section>
+
+      <footer>
+        Tip: keep this file as a lightweight architecture map for onboarding and documentation.
+      </footer>
+    </div>
+  </body>
+</html>
