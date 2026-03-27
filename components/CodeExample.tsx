@@ -112,7 +112,7 @@ function renderLineWithInlineCode(line: string): React.ReactNode {
       return (
         <span
           key={index}
-          className="bg-green-100 dark:bg-green-900/40 text-green-900 dark:text-green-100 border border-green-200/70 dark:border-green-700/60 px-1 rounded"
+          className="bg-orange-100 dark:bg-orange-900/40 text-orange-900 dark:text-orange-100 border border-orange-200/70 dark:border-orange-700/60 px-1 rounded"
         >
           {part}
         </span>
